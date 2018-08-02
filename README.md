@@ -17,7 +17,7 @@ yarn install
 ## Develop
 
 ```bash
-react-native run ios
+yarn dev
 ```
 
 ## Test

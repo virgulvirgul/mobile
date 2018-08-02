@@ -4,7 +4,7 @@ describe('Home', () => {
   });
 
   it('should have home scene', async () => {
-    await expect(element(by.id('home'))).toBeVisible();
+    await expect(element(by.id('Home'))).toBeVisible();
   });
 
   // it('should show hello screen after tap', async () => {
@@ -16,4 +16,4 @@ describe('Home', () => {
   //   await element(by.id('world_button')).tap();
   //   await expect(element(by.text('World!!!'))).toBeVisible();
   // });
-})
+});

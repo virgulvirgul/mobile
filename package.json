@@ -5,6 +5,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "dev": "react-native run-ios --simulator='iPhone X'",
     "test": "jest",
     "e2e": "detox test --configuration ios.sim.debug"
   },
@@ -51,8 +52,7 @@
   "jest": {
     "preset": "react-native",
     "moduleNameMapper": {
-      "styled-components":
-        "<rootDir>/node_modules/styled-components/dist/styled-components.native.cjs.js"
+      "styled-components": "<rootDir>/node_modules/styled-components/dist/styled-components.native.cjs.js"
     }
   },
   "detox": {

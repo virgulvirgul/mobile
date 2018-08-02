@@ -1,16 +1,21 @@
 import React from 'react';
 
-import { Button, Container, H1 } from '../components';
+import { Container, H1, Navbar, TripCard } from '../components';
 
 export default class Home extends React.PureComponent {
   render() {
     return (
-      <Container testID="home">
-        <H1>Ask</H1>
-        <Button
-          onPress={() => alert('hi')}
-          text="Sup"
-        />
+      <Container testID="Home">
+        <Navbar />
+
+        <Container>
+          <H1>Home</H1>
+        </Container>
+
+        <Container>
+          <H1>Cards</H1>
+          <TripCard />
+        </Container>
       </Container>
     );
   }

@@ -8,7 +8,7 @@ export default class Root extends React.PureComponent {
   render() {
     return (
       <Container>
-        <StatusBar backgroundColor="green" barStyle="light-content" />
+        <StatusBar backgroundColor="#dddddd" barStyle="light-content" />
         <Router />
       </Container>
     );

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import createStore from '../redux/store.js';
 import initialState from '../redux/initialState';
 import Root from './Root.js';
+import Router from './Router.js';
 
 const store = createStore(initialState);
 

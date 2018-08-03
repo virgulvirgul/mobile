@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 
 import Home from './Home';
+import { Navbar } from '../components';
 
 const Router = createStackNavigator({
   // Splash: {
@@ -17,7 +18,11 @@ const Router = createStackNavigator({
     screen: ({ navigation, screenProps }) => {
       return <Home />;
     },
-    // navigationOptions: { header: null },
+    navigationOptions: ({ navigation, screenProps }) => ({
+      headerMode: 'screen',
+      headerStyle: { backgroundColor: 'white' },
+      header: <Navbar />,
+    }),
   },
 });
 

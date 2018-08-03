@@ -17,7 +17,7 @@ const TouchableHighlight = styled.TouchableHighlight`
 
 const buttonColors = {
   primary: TouchableHighlight.extend`
-    background-color: green;
+    background-color: #4fb797;
   `,
   dark: TouchableHighlight.extend`
     background-color: black;

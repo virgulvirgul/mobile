@@ -1,17 +1,36 @@
 import Button from './Button';
 import Container from './Container';
-import H1 from './H1';
+import { H1, H2, H3, P } from './Typography';
 import Navbar from './Navbar';
 import SearchFilters from './SearchFilters';
 import TripCard from './TripCard';
+import TripItinerary from './TripItinerary';
+import VoiceRecorder from './VoiceRecorder';
 
-export { Button, Container, H1, Navbar, SearchFilters, TripCard };
+export {
+  Button,
+  Container,
+  H1,
+  H2,
+  H3,
+  P,
+  Navbar,
+  SearchFilters,
+  TripCard,
+  TripItinerary,
+  VoiceRecorder,
+};
 
 export default {
   Button,
   Container,
   H1,
+  H2,
+  H3,
+  P,
   Navbar,
   SearchFilters,
   TripCard,
+  TripItinerary,
+  VoiceRecorder,
 };

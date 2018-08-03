@@ -26,6 +26,7 @@
     "prop-types": "^15.6.2",
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-snap-carousel": "^3.7.2",
     "react-navigation": "^2.9.3",
     "react-pose": "^2.2.0",
     "react-redux": "^5.0.7",

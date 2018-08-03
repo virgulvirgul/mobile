@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Dimensions, LayoutAnimation } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
-import { H1, Navbar, TripCard, VoiceRecorder } from '../components';
+import { H1, Swiper, TripCard, VoiceRecorder } from '../components';
 
 const HomeContainer = styled.View`
   width: 200%;
@@ -38,7 +38,7 @@ const CardsContainer = styled.View`
 const { width: deviceWidth } = Dimensions.get('window');
 
 export default class Home extends React.PureComponent {
-  state = { step: 1 };
+  state = { step: 0 };
 
   pan = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -55,13 +55,9 @@ export default class Home extends React.PureComponent {
 
     return (
       <HomeContainer testID="Home" style={offset}>
-        {/* <Navbar /> */}
-
         <VoiceContainer>
-          <H1 center onPress={this.pan}>
-            Please, Ask For Your Perfect Trip
-          </H1>
-          <VoiceRecorder />
+          <H1 center>Please, Ask For Your Perfect Trip</H1>
+          <VoiceRecorder onPress={this.pan} />
         </VoiceContainer>
 
         <CardsContainer>

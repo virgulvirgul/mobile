@@ -20,7 +20,6 @@ const Router = createStackNavigator({
     },
     navigationOptions: ({ navigation, screenProps }) => ({
       headerMode: 'screen',
-      headerStyle: { backgroundColor: 'white' },
       header: <Navbar />,
     }),
   },

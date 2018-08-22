@@ -11,6 +11,7 @@ const HomeContainer = styled.View`
   flex-direction: row;
   height: 100%;
   position: relative;
+  background: white;
 `;
 
 const VoiceContainer = styled.View`

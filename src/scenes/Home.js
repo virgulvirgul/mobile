@@ -27,14 +27,6 @@ const CardsContainer = styled.View`
   width: 50%;
 `;
 
-// const TripCardScroll = styled.ScrollView.attrs({
-//   contentContainerStyle: props => {
-//     return {
-//       flex: 1,
-//     }
-//   }
-// })``;
-
 const { width: deviceWidth } = Dimensions.get('window');
 
 export default class Home extends React.PureComponent {
@@ -56,7 +48,7 @@ export default class Home extends React.PureComponent {
     return (
       <HomeContainer testID="Home" style={offset}>
         <VoiceContainer>
-          <H1 center>Please, Ask For Your Perfect Trip</H1>
+          <H1 center>Ask For Your Perfect Trips</H1>
           <VoiceRecorder onPress={this.pan} />
         </VoiceContainer>
 

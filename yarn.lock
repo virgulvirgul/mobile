@@ -4881,6 +4881,10 @@ react-native-snap-carousel@^3.7.2:
     prop-types "^15.6.1"
     react-addons-shallow-compare "15.6.2"
 
+react-native-swipe-up-down@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-swipe-up-down/-/react-native-swipe-up-down-1.0.5.tgz#affd1920e9c391d35309a18a74d6d51e32485200"
+
 react-native-tab-view@^0.0.77:
   version "0.0.77"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.77.tgz#11ceb8e7c23100d07e628dc151b57797524d00d4"

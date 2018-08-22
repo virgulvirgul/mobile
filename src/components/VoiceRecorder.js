@@ -11,6 +11,7 @@ const VoiceDot = styled.TouchableHighlight`
   border-radius: 50px;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
 `;
 
 export default class VoiceRecorder extends React.PureComponent {

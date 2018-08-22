@@ -17,7 +17,13 @@ yarn install
 ## Develop
 
 ```bash
-yarn dev
+yarn dev-ios
+```
+
+or
+
+```bash
+yarn dev-android
 ```
 
 ## Test

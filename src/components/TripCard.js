@@ -50,11 +50,13 @@ export default class TripCard extends React.PureComponent {
         shadowOpacity={1}
         shadowRadius={2}
       >
-        <CardImage source={{ uri: 'https://picsum.photos/458/354' }} />
+        <CardImage
+          source={{ uri: this.props.data.item.media[0].files.large.url }}
+        />
         <CardContent>
           <H2>{this.props.data.item.title['en-us']}</H2>
           <CardDescription>
-            {JSON.stringify(this.props.data.item.title['en-us'])}
+            {this.props.data.item.description['en-us']}
           </CardDescription>
           <TripItinerary />
         </CardContent>

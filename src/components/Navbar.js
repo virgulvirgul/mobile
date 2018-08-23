@@ -12,7 +12,7 @@ const NavbarContainer = styled.View`
 `;
 
 const FilterContainer = styled.View`
-  height: 500px;
+  height: 700px;
   width: 100%;
   padding-top: 20px;
   padding-bottom: 5px;
@@ -25,6 +25,7 @@ const FilterContainer = styled.View`
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   margin-bottom: 10px;
+  margin-top: -200px;
 
   ${({ active }) =>
     active &&
@@ -41,7 +42,7 @@ export default class Navbar extends React.PureComponent {
   state = { isFilterOpen: false };
 
   toggleFilter = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
     this.setState({ isFilterOpen: !this.state.isFilterOpen });
   };
 

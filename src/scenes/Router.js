@@ -16,7 +16,7 @@ const Router = createStackNavigator(
     //   screen: Onboarding,
     //   navigationOptions: { header: null },
     // },
-    Main: {
+    Home: {
       screen: ({ navigation, screenProps }) => {
         return <Home navigation={navigation} />;
       },
@@ -36,7 +36,7 @@ const Router = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'SearchResults',
+    initialRouteName: 'Home',
   }
 );
 

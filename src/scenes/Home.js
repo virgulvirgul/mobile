@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Dimensions, LayoutAnimation, Button, Text } from 'react-native';
+import { Dimensions, LayoutAnimation, Button, Text, View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import { Fetch } from 'react-data-fetching';
+import { Loader } from '../components';
 
 import { H1, Swiper, TripCard, VoiceRecorder } from '../components';
 
@@ -51,7 +53,7 @@ export default class Home extends React.PureComponent {
   };
 
   renderItem = item => {
-    return <TripCard />;
+    return <TripCard data={item} />;
   };
 
   render() {
@@ -71,16 +73,24 @@ export default class Home extends React.PureComponent {
           </ButtonContainer>
         </VoiceContainer>
 
-        <CardsContainer>
-          <Carousel
-            data={trips}
-            renderItem={this.renderItem}
-            sliderWidth={deviceWidth}
-            itemWidth={320}
-            itemHeight={200}
-            inactiveSlideScale={1}
-          />
-        </CardsContainer>
+        <Fetch
+          loader={<Text>lalala</Text>}
+          url="https://staging-api.please.com/search"
+          timeout={5000}
+        >
+          {({ data }) => (
+            <CardsContainer>
+              <Carousel
+                data={data}
+                renderItem={this.renderItem}
+                sliderWidth={deviceWidth}
+                itemWidth={320}
+                itemHeight={200}
+                inactiveSlideScale={1}
+              />
+            </CardsContainer>
+          )}
+        </Fetch>
       </HomeContainer>
     );
   }

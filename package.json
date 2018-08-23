@@ -26,6 +26,7 @@
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "16.4.1",
+    "react-data-fetching": "^0.2.2",
     "react-native": "0.56.0",
     "react-native-snap-carousel": "^3.7.2",
     "react-native-swipe-up-down": "^1.0.5",

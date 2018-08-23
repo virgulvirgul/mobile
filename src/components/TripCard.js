@@ -1,7 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components';
-import Carousel from 'react-native-snap-carousel';
 
 import { H2, TripItinerary } from './';
 
@@ -42,20 +41,7 @@ const CrumbText = styled.Text`
 `;
 
 export default class TripCard extends React.PureComponent {
-  renderCrumb = () => {
-    return (
-      <Crumb>
-        <CrumbText>sup</CrumbText>
-      </Crumb>
-    );
-  };
-
   render() {
-    const crumbs = [
-      { name: 'sup', color: 'red' },
-      { name: 'man', color: 'red' },
-      { name: 'yoo', color: 'red' },
-    ];
     return (
       <TripCardContainer
         testID="TripCard"
@@ -66,17 +52,10 @@ export default class TripCard extends React.PureComponent {
       >
         <CardImage source={{ uri: 'https://picsum.photos/458/354' }} />
         <CardContent>
-          <H2>TripCard</H2>
+          <H2>{this.props.data.item.title['en-us']}</H2>
           <CardDescription>
-            What up man how does it go and stuff
+            {JSON.stringify(this.props.data.item.title['en-us'])}
           </CardDescription>
-          {/* <Carousel
-            data={crumbs}
-            renderItem={this.renderCrumb}
-            sliderWidth={100}
-            itemWidth={30}
-            inactiveSlideScale={1}
-          /> */}
           <TripItinerary />
         </CardContent>
       </TripCardContainer>

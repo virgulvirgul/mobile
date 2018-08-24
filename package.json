@@ -25,6 +25,9 @@
     ]
   },
   "dependencies": {
+    "appcenter": "^1.7.1",
+    "appcenter-analytics": "^1.7.1",
+    "appcenter-crashes": "^1.7.1",
     "await-to-js": "^2.0.1",
     "babel-eslint": "^8.2.6",
     "color": "^3.0.0",
@@ -72,7 +75,12 @@
     "preset": "react-native",
     "moduleNameMapper": {
       "styled-components": "<rootDir>/node_modules/styled-components/dist/styled-components.native.cjs.js"
-    }
+    },
+    "setupFiles": [
+      "<rootDir>/node_modules/appcenter-analytics/test/AppCenterAnalyticsMock.js",
+      "<rootDir>/node_modules/appcenter-crashes/test/AppCenterCrashesMock.js",
+      "<rootDir>/node_modules/appcenter/test/AppCenterMock.js"
+    ]
   },
   "detox": {
     "configurations": {

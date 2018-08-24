@@ -14,8 +14,13 @@
     "lint": "eslint -c .eslintrc --ext .js src"
   },
   "lint-staged": {
-    "*.{js,json,css,md}": [
-      "prettier --write --single-quote --trailing-comma es5",
+    "*.{js}": [
+      "prettier --write",
+      "eslint -c .eslintrc --ext .js",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
       "git add"
     ]
   },

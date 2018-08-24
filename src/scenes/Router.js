@@ -37,7 +37,7 @@ const Router = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
-  }
+  },
 );
 
 export default Router;

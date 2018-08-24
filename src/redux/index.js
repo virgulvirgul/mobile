@@ -7,7 +7,7 @@ export default function redux(callback = state => state) {
   return function(component) {
     return connect(
       callback,
-      actions
+      actions,
     )(component);
   };
 }

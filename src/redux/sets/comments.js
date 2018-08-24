@@ -10,7 +10,7 @@ const comments = createSet(
     SET_COMMENTS: (state, action) => action.payload,
     CLEAR_COMMENTS: (state, action) => initialState,
   },
-  initialState
+  initialState,
 );
 
 export default comments;

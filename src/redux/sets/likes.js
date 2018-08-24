@@ -10,7 +10,7 @@ const likes = createSet(
     SET_LIKES: (state, action) => action.payload,
     CLEAR_LIKES: (state, action) => initialState,
   },
-  initialState
+  initialState,
 );
 
 export default likes;

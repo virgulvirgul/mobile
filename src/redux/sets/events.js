@@ -50,7 +50,7 @@ const events = createSet(
       },
     }),
   },
-  initialState
+  initialState,
 );
 
 events.actions.asyncFetchEvents = () => async dispatch => {

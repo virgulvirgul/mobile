@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "precommit": "lint-staged",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "dev-ios": "react-native run-ios --simulator='iPhone X'",
     "dev-android": "react-native run-android",
@@ -14,7 +13,7 @@
     "lint": "eslint -c .eslintrc --ext .js src"
   },
   "lint-staged": {
-    "*.{js}": [
+    "*.js": [
       "prettier --write",
       "eslint -c .eslintrc --ext .js",
       "git add"

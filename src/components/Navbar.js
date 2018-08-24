@@ -58,10 +58,7 @@ export default class Navbar extends React.PureComponent {
   render() {
     const { isFilterOpen } = this.state;
     return (
-      <NavbarContainer
-        testID="Navbar"
-        style={isFilterOpen && { height: 'auto' }}
-      >
+      <NavbarContainer testID="Navbar" style={isFilterOpen && { height: 'auto' }}>
         <FilterContainer active={isFilterOpen}>
           <Icon
             name={isFilterOpen ? 'chevron-up' : 'chevron-down'}

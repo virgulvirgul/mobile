@@ -12,8 +12,7 @@ const initialState = {
   likes: [],
   user: {
     name: '12b353',
-    avatar:
-      'https://storage.googleapis.com/opensea-static/opensea-profile/5.png',
+    avatar: 'https://storage.googleapis.com/opensea-static/opensea-profile/5.png',
   },
 };
 

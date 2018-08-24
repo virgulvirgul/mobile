@@ -44,11 +44,7 @@ export default class Home extends React.PureComponent {
           <VoiceRecorder onPress={this.navigateToSearchResults} />
 
           <ButtonContainer>
-            <Button
-              onPress={this.navigateToSearchResults}
-              title="Login"
-              color="#4fb797"
-            />
+            <Button onPress={this.navigateToSearchResults} title="Login" color="#4fb797" />
 
             <RegisterButton>Create your account</RegisterButton>
           </ButtonContainer>

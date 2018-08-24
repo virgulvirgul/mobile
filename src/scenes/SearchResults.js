@@ -33,11 +33,7 @@ export default class Onboarding extends React.PureComponent {
   render() {
     return (
       <SearchResultsContainer>
-        <Fetch
-          loader={<Loader />}
-          url="https://staging-api.please.com/search"
-          timeout={5000}
-        >
+        <Fetch loader={<Loader />} url="https://staging-api.please.com/search" timeout={5000}>
           {({ data }) => (
             <CardsContainer>
               <Carousel

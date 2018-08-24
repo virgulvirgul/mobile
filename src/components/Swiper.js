@@ -37,15 +37,9 @@ export default class Swiper extends React.Component {
 
       let newIndex = this.state.index;
 
-      if (
-        relativeGestureDistance < -0.5 ||
-        (relativeGestureDistance < 0 && vx <= -0.5)
-      ) {
+      if (relativeGestureDistance < -0.5 || (relativeGestureDistance < 0 && vx <= -0.5)) {
         newIndex = newIndex + 1;
-      } else if (
-        relativeGestureDistance > 0.5 ||
-        (relativeGestureDistance > 0 && vx >= 0.5)
-      ) {
+      } else if (relativeGestureDistance > 0.5 || (relativeGestureDistance > 0 && vx >= 0.5)) {
         newIndex = newIndex - 1;
       }
 
@@ -83,10 +77,7 @@ export default class Swiper extends React.Component {
 
   goToPage(pageNumber) {
     // Don't scroll outside the bounds of the screens
-    pageNumber = Math.max(
-      0,
-      Math.min(pageNumber, this.props.children.length - 1)
-    );
+    pageNumber = Math.max(0, Math.min(pageNumber, this.props.children.length - 1));
     this.setState({
       index: pageNumber,
     });
@@ -127,10 +118,7 @@ export default class Swiper extends React.Component {
     };
 
     return (
-      <View
-        onLayout={this.handleLayout.bind(this)}
-        style={{ flex: 1, overflow: 'hidden' }}
-      >
+      <View onLayout={this.handleLayout.bind(this)} style={{ flex: 1, overflow: 'hidden' }}>
         <Animated.View
           {...this._panResponder.panHandlers}
           style={[sceneContainerStyle, { transform: [{ translateX }] }]}

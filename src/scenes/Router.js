@@ -4,6 +4,7 @@ import { Navbar } from '../components';
 
 import Home from './Home';
 import SearchResults from './SearchResults';
+import Auth from './Auth';
 
 const Router = createStackNavigator(
   {
@@ -11,7 +12,15 @@ const Router = createStackNavigator(
     //   screen: Splash,
     //   navigationOptions: { header: null },
     // },
-    // Auth: { screen: Auth },
+    Auth: {
+      screen: ({ navigation, screenProps }) => {
+        return <Auth navigation={navigation} />;
+      },
+      navigationOptions: ({ navigation, screenProps }) => ({
+        headerMode: 'screen',
+        header: <Navbar />,
+      }),
+    },
     // Onboarding: {
     //   screen: Onboarding,
     //   navigationOptions: { header: null },
@@ -36,7 +45,7 @@ const Router = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Auth',
   },
 );
 

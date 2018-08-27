@@ -25,17 +25,16 @@ const ButtonContainer = styled.View`
   padding-top: 100px;
 `;
 
-const RegisterButton = styled.Text`
-  margin-top: 30px;
-  text-decoration: underline;
-  color: #4fb797;
-  font-size: 15px;
-`;
-
 export default class Home extends React.PureComponent {
+
   navigateToSearchResults = () => {
     this.props.navigation.navigate('SearchResults');
   };
+
+  navigateToAuth = () => {
+    this.props.navigation.navigate('Auth');
+  };
+
   render() {
     return (
       <HomeContainer testID="Home">
@@ -44,9 +43,7 @@ export default class Home extends React.PureComponent {
           <VoiceRecorder onPress={this.navigateToSearchResults} />
 
           <ButtonContainer>
-            <Button onPress={this.navigateToSearchResults} title="Login" color="#4fb797" />
-
-            <RegisterButton>Create your account</RegisterButton>
+            <Button onPress={this.navigateToAuth} title="Login" color="#4fb797" />
           </ButtonContainer>
         </VoiceContainer>
       </HomeContainer>

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Dimensions, Text } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { Fetch } from 'react-data-fetching';
-import Loader from '../components/Loader';
 import TripCard from '../components/TripCard';
 
 const SearchResultsContainer = styled.View`
@@ -33,11 +32,11 @@ export default class Onboarding extends React.PureComponent {
   render() {
     return (
       <SearchResultsContainer>
-        <Fetch loader={<Loader />} url="https://staging-api.please.com/search" timeout={5000}>
+        <Fetch path="/search">
           {({ data }) => (
             <CardsContainer>
               <Carousel
-                data={data}
+                data={data.trips}
                 renderItem={this.renderItem}
                 sliderWidth={deviceWidth}
                 itemWidth={320}

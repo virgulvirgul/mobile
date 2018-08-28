@@ -56,7 +56,7 @@ export default class TripCard extends React.PureComponent {
           <H2>{this.props.data.item.title['en-us']}</H2>
           <CardDescription>{this.props.data.item.description['en-us']}</CardDescription>
           <TripItinerary data={this.props.data.item.services} />
-          <Button title="Book trip" color="#4fb797" />
+          <Button title="Book trip" color="#4fb797" onPress={() => alert("booked")} />
         </CardContent>
       </TripCardContainer>
     );

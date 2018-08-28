@@ -54,7 +54,7 @@ export default class TripCard extends React.PureComponent {
         <CardContent>
           <H2>{this.props.data.item.title['en-us']}</H2>
           <CardDescription>{this.props.data.item.description['en-us']}</CardDescription>
-          <TripItinerary />
+          <TripItinerary data={this.props.data.item.services}/>
         </CardContent>
       </TripCardContainer>
     );

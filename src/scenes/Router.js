@@ -45,7 +45,7 @@ const Router = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'Home',
   },
 );
 

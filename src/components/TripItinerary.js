@@ -30,23 +30,20 @@ export default class TripItinerary extends React.PureComponent {
         shadowOpacity={1}
         shadowRadius={2}
       >
-        <H3>Thing {item.id}</H3>
-        <EventDescription>Here is how to do thing {item.id}</EventDescription>
+        <H3>{item.service.title['en-us']}</H3>
+        <EventDescription>{item.service.description['en-us']}</EventDescription>
+        <H3>Price: {item.service.baseCurrency.symbol}{item.service.basePrice}</H3>
       </EventContainer>
     );
   };
 
   render() {
-    const events = [
-      { id: 1, name: 'sup', color: 'red' },
-      { id: 2, name: 'man', color: 'red' },
-      { id: 3, name: 'yoo', color: 'red' },
-    ];
+    console.log(this.props.data)
     return (
       <TripItineraryContainer testID="TripCard">
         <FlatList
-          data={events}
-          keyExtractor={({ id }) => id.toString()}
+          data={this.props.data}
+          keyExtractor={({ _id }) => _id.toString()}
           renderItem={this.renderEvent}
         />
       </TripItineraryContainer>

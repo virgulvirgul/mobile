@@ -32,13 +32,16 @@ export default class TripItinerary extends React.PureComponent {
       >
         <H3>{item.service.title['en-us']}</H3>
         <EventDescription>{item.service.description['en-us']}</EventDescription>
-        <H3>Price: {item.service.baseCurrency.symbol}{item.service.basePrice}</H3>
+        <H3>
+          Price: {item.service.baseCurrency.symbol}
+          {item.service.basePrice}
+        </H3>
       </EventContainer>
     );
   };
 
   render() {
-    console.log(this.props.data)
+    console.log(this.props.data);
     return (
       <TripItineraryContainer testID="TripCard">
         <FlatList

@@ -16,9 +16,16 @@ export default class Auth extends React.PureComponent {
   render() {
     return (
       <AuthContainer testID="Auth">
-          <TextInput placeholder="E-mail" style={{height: 40, borderColor: 'gray', borderWidth: 1  }}/>
-          <TextInput secureTextEntry={true} placeholder="Password" style={{height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 20}}/>
-          <Button title="Log in"/>
+        <TextInput
+          placeholder="E-mail"
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+        />
+        <TextInput
+          secureTextEntry={true}
+          placeholder="Password"
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 20 }}
+        />
+        <Button title="Log in" />
       </AuthContainer>
     );
   }

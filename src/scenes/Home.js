@@ -26,7 +26,6 @@ const ButtonContainer = styled.View`
 `;
 
 export default class Home extends React.PureComponent {
-
   navigateToSearchResults = () => {
     this.props.navigation.navigate('SearchResults');
   };

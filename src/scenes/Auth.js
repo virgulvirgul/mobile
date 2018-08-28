@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button, Text, TextInput } from 'react-native';
 import Auth0 from 'react-native-auth0';
 import decode from 'jwt-decode';
+import { config } from '../libs/config'
 
 const AuthContainer = styled.View`
   width: 100%;
@@ -14,7 +15,7 @@ const AuthContainer = styled.View`
   padding-right: 20px;
 `;
 
-const auth0 = new Auth0({ domain: 'staging-please.eu.auth0.com', clientId: 'hdP9sSzartSH2lvR2oABAWd0Cq7UUQVv' });
+const auth0 = new Auth0({ domain: config.AUTH0_DOMAIN, clientId: config.AUTH0_CLIENT_ID });
 
 export default class Auth extends React.PureComponent {
 

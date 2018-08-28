@@ -38,6 +38,7 @@
     "eslint-plugin-react": "^7.11.1",
     "headersfactory": "^1.0.3",
     "idx": "^2.4.0",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Text, TextInput } from 'react-native';
 import Auth0 from 'react-native-auth0';
+import decode from 'jwt-decode';
 
 const AuthContainer = styled.View`
   width: 100%;
@@ -29,7 +30,9 @@ export default class Auth extends React.PureComponent {
     auth0
       .auth
       .passwordRealm({username: this.state.username, password: this.state.password, realm: "Username-Password-Authentication"})
-      .then(console.log)
+      .then((result) => {
+        console.log(decode(result.idToken));
+      })
       .catch(console.error);
   };
 

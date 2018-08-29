@@ -8,10 +8,6 @@ import Auth from './Auth';
 
 const Router = createStackNavigator(
   {
-    // Splash: {
-    //   screen: Splash,
-    //   navigationOptions: { header: null },
-    // },
     Auth: {
       screen: ({ navigation, screenProps }) => {
         return <Auth navigation={navigation} />;
@@ -21,10 +17,6 @@ const Router = createStackNavigator(
         header: <Navbar />,
       }),
     },
-    // Onboarding: {
-    //   screen: Onboarding,
-    //   navigationOptions: { header: null },
-    // },
     Home: {
       screen: ({ navigation, screenProps }) => {
         return <Home navigation={navigation} />;
@@ -45,7 +37,7 @@ const Router = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Auth',
   },
 );
 

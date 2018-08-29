@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Text, TextInput } from 'react-native';
+import { Button, Text, TextInput, AsyncStorage } from 'react-native';
 import Auth0 from 'react-native-auth0';
 import decode from 'jwt-decode';
 import { config } from '../libs/config'
@@ -17,22 +17,44 @@ const AuthContainer = styled.View`
 
 const auth0 = new Auth0({ domain: config.AUTH0_DOMAIN, clientId: config.AUTH0_CLIENT_ID });
 
-export default class Auth extends React.PureComponent {
+export default class Auth extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      user: null
     };
   };
+
+  _storeUser = async (user) => {
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify(user));
+    }  catch (error) {
+      console.log(error);
+    }
+  }
+
+  _retrieveUser = async () => {
+    try {
+      const user = await AsyncStorage.getItem('user');
+      if (user !== null) {
+        return JSON.parse(user);
+      }
+
+      return null;
+     } catch (error) {
+       console.log(error);
+     }
+  }
 
   logInWithCredentials = () => {
     auth0
       .auth
       .passwordRealm({username: this.state.username, password: this.state.password, realm: "Username-Password-Authentication"})
       .then((result) => {
-        console.log(decode(result.idToken));
+        this._storeUser(decode(result.idToken));
       })
       .catch(console.error);
   };
@@ -54,6 +76,7 @@ export default class Auth extends React.PureComponent {
           value={this.state.password}
         />
         <Button title="Log in" onPress={this.logInWithCredentials}/>
+        <Text>Status: </Text>
       </AuthContainer>
     );
   };

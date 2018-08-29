@@ -41,7 +41,6 @@ export default class TripItinerary extends React.PureComponent {
   };
 
   render() {
-    console.log(this.props.data);
     return (
       <TripItineraryContainer testID="TripCard">
         <FlatList

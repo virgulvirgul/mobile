@@ -41,9 +41,9 @@ export default class Launch extends React.PureComponent {
           <H1 center>Ask For Your Perfect Trip</H1>
           <VoiceRecorder onPress={this.navigateToSearchResults} />
 
-          <ButtonContainer>
+          {/*<ButtonContainer>
             <Button onPress={this.navigateToAuth} title="Login" color="#4fb797" />
-          </ButtonContainer>
+          </ButtonContainer>*/}
         </VoiceContainer>
       </LaunchContainer>
     );

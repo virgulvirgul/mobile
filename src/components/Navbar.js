@@ -18,10 +18,9 @@ const FilterContainer = styled.View`
   padding-bottom: 5px;
   background-color: white;
   position: relative;
-  top: -455px;
+  top: -435px;
   align-items: center;
   justify-content: flex-end;
-  box-shadow: 5px 10px #888888;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   margin-bottom: 10px;
@@ -30,9 +29,10 @@ const FilterContainer = styled.View`
   ${({ active }) =>
     active &&
     `
+    box-shadow: 2px 3px #888888;
     elevation: 5;
     shadowColor: #000000;
-    shadowOpacity: 0.8;
+    shadowOpacity: 0.3;
     shadowRadius: 2;
     top: 0;
   `};

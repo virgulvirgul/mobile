@@ -14,8 +14,10 @@ const SearchResultsContainer = styled.View`
   background: white;
 `;
 
-const CardsContainer = styled.ScrollView`
+const CardsContainer = styled.View`
   flex: 1;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   margin-top: 50px;
 `;
@@ -37,8 +39,7 @@ export default class Onboarding extends React.PureComponent {
                 data={data.trips}
                 renderItem={this.renderItem}
                 sliderWidth={deviceWidth}
-                itemWidth={320}
-                itemHeight={200}
+                itemWidth={deviceWidth-50}
                 inactiveSlideScale={1}
               />
             </CardsContainer>

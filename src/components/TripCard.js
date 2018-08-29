@@ -1,10 +1,10 @@
 import React from 'react';
-import { Dimensions, Button } from 'react-native';
+import { Dimensions, Button, ScrollView } from 'react-native';
 import styled from 'styled-components';
 
 import { H2, TripItinerary } from './';
 
-const { width: deviceWidth } = Dimensions.get('window');
+const { height: deviceHeight } = Dimensions.get('window');
 
 const TripCardContainer = styled.View`
   elevation: 2;
@@ -15,7 +15,7 @@ const TripCardContainer = styled.View`
 `;
 
 const CardImage = styled.Image`
-  width: 300px;
+  flex: 1;
   height: 200px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -46,11 +46,11 @@ export default class TripCard extends React.PureComponent {
     return (
       <TripCardContainer
         testID="TripCard"
-        shadowColor="rgba(0, 0, 0, 0.3)"
-        shadowOffset={{ width: 0, height: 1 }}
-        shadowOpacity={1}
-        shadowRadius={2}
+        height={deviceHeight - 100}
       >
+        <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
         <CardImage source={{ uri: this.props.data.item.media[0].files.large.url }} />
         <CardContent>
           <H2>{this.props.data.item.title['en-us']}</H2>
@@ -58,6 +58,7 @@ export default class TripCard extends React.PureComponent {
           <TripItinerary data={this.props.data.item.services} />
           <Button title="Book trip" color="#4fb797" onPress={() => alert("booked")} />
         </CardContent>
+        </ScrollView>
       </TripCardContainer>
     );
   }

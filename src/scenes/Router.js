@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import { Navbar } from '../components';
 
-import Home from './Home';
+import Launch from './Launch';
 import SearchResults from './SearchResults';
 import Auth from './Auth';
 
@@ -17,9 +17,9 @@ const Router = createStackNavigator(
         header: <Navbar />,
       }),
     },
-    Home: {
+    Launch: {
       screen: ({ navigation, screenProps }) => {
-        return <Home navigation={navigation} />;
+        return <Launch navigation={navigation} />;
       },
       navigationOptions: ({ navigation, screenProps }) => ({
         headerMode: 'screen',
@@ -37,7 +37,7 @@ const Router = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'Launch',
   },
 );
 

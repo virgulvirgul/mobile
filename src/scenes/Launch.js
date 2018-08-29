@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 
 import { H1, VoiceRecorder } from '../components';
 
-const HomeContainer = styled.View`
+const LaunchContainer = styled.View`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -25,7 +25,7 @@ const ButtonContainer = styled.View`
   padding-top: 100px;
 `;
 
-export default class Home extends React.PureComponent {
+export default class Launch extends React.PureComponent {
   navigateToSearchResults = () => {
     this.props.navigation.navigate('SearchResults');
   };
@@ -36,7 +36,7 @@ export default class Home extends React.PureComponent {
 
   render() {
     return (
-      <HomeContainer testID="Home">
+      <LaunchContainer testID="Home">
         <VoiceContainer>
           <H1 center>Ask For Your Perfect Trip</H1>
           <VoiceRecorder onPress={this.navigateToSearchResults} />
@@ -45,7 +45,7 @@ export default class Home extends React.PureComponent {
             <Button onPress={this.navigateToAuth} title="Login" color="#4fb797" />
           </ButtonContainer>
         </VoiceContainer>
-      </HomeContainer>
+      </LaunchContainer>
     );
   }
 }

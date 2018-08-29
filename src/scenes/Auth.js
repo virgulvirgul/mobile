@@ -76,7 +76,6 @@ export default class Auth extends React.Component {
           value={this.state.password}
         />
         <Button title="Log in" onPress={this.logInWithCredentials}/>
-        <Text>Status: </Text>
       </AuthContainer>
     );
   };

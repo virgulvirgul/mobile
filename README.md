@@ -25,13 +25,13 @@ yarn install
 ## Develop
 
 ```bash
-yarn dev-ios
+yarn run-ios
 ```
 
 or
 
 ```bash
-yarn dev-android
+yarn run-android
 ```
 
 ## Test
@@ -47,5 +47,5 @@ yarn e2e
 ## Deploy
 
 ```bash
-# TBD
+We use appcenter that signs the apps and automatically notifies contributors about new distribution releases.
 ```

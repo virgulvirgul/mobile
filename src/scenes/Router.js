@@ -1,12 +1,12 @@
 import React from 'react';
-import {StackNavigator, DrawerNavigator} from 'react-navigation';
-import {createDrawerNavigator} from 'react-navigation-drawer';
+import {createStackNavigator, createDrawerNavigator} from 'react-navigation';
 
+import Auth from './Auth';
 import Launch from './Launch';
 import SearchResults from './SearchResults';
-import Auth from './Auth';
+import SearchForm from './SearchForm';
 
-const MainNavigator = DrawerNavigator({
+const MainNavigator = createDrawerNavigator({
   Auth: {
     screen: Auth
   },
@@ -15,10 +15,13 @@ const MainNavigator = DrawerNavigator({
   },
   SearchResults: {
     screen: SearchResults
+  },
+  SearchForm: {
+    screen: SearchForm
   }
-}, {initialRouteName: 'Launch'});
+}, {initialRouteName: 'SearchForm'});
 
-const Router = StackNavigator({
+const Router = createStackNavigator({
   Main: {
     screen: MainNavigator
   }

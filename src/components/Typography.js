@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const TextH1 = styled.Text`
   font-size: 32px;
+  color: #2D3237;
 `;
 
 const TextH2 = styled.Text`

@@ -1,7 +1,6 @@
 import Button from './Button';
 import Container from './Container';
 import { H1, H2, H3, P } from './Typography';
-import Navbar from './Navbar';
 import SearchFilters from './SearchFilters';
 import TripCard from './TripCard';
 import TripItinerary from './TripItinerary';
@@ -14,7 +13,6 @@ export {
   H2,
   H3,
   P,
-  Navbar,
   SearchFilters,
   TripCard,
   TripItinerary,
@@ -28,7 +26,6 @@ export default {
   H2,
   H3,
   P,
-  Navbar,
   SearchFilters,
   TripCard,
   TripItinerary,

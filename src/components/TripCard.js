@@ -1,6 +1,8 @@
 import React from 'react';
 import { Dimensions, Button, ScrollView } from 'react-native';
 import styled from 'styled-components';
+import Image from 'react-native-image-progress';
+import ProgressBar from 'react-native-progress/Bar';
 
 import { H2, TripItinerary } from './';
 
@@ -11,14 +13,6 @@ const TripCardContainer = styled.View`
   background-color: white;
   border-radius: 5px;
   margin-bottom: 50px;
-`;
-
-const CardImage = styled.Image`
-  flex: 1;
-  height: 200px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  overflow: hidden;
 `;
 
 const CardContent = styled.View`
@@ -45,12 +39,21 @@ export default class TripCard extends React.PureComponent {
     return (
       <TripCardContainer
         testID="TripCard"
-        height={deviceHeight - 100}
+        height={deviceHeight - 50}
       >
         <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
-        <CardImage source={{ uri: this.props.data.item.media[0].files.large.url }} />
+        <Image
+          source={{ uri: this.props.data.item.media[0].files.large.url }}
+          indicator={ProgressBar}
+          indicatorProps={{
+            color: 'rgba(79, 183, 151, 1)',
+          }}
+          style={{
+            flex: 1,
+            height: 200,
+          }}/>
         <CardContent>
           <H2>{this.props.data.item.title['en-us']}</H2>
           <CardDescription>{this.props.data.item.description['en-us']}</CardDescription>

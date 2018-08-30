@@ -3,7 +3,6 @@ import Container from './Container';
 import { H1, H2, H3, P } from './Typography';
 import Navbar from './Navbar';
 import SearchFilters from './SearchFilters';
-import Swiper from './Swiper';
 import TripCard from './TripCard';
 import TripItinerary from './TripItinerary';
 import VoiceRecorder from './VoiceRecorder';
@@ -17,7 +16,6 @@ export {
   P,
   Navbar,
   SearchFilters,
-  Swiper,
   TripCard,
   TripItinerary,
   VoiceRecorder,
@@ -32,7 +30,6 @@ export default {
   P,
   Navbar,
   SearchFilters,
-  Swiper,
   TripCard,
   TripItinerary,
   VoiceRecorder,

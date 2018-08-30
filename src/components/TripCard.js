@@ -7,7 +7,6 @@ import { H2, TripItinerary } from './';
 const { height: deviceHeight } = Dimensions.get('window');
 
 const TripCardContainer = styled.View`
-  elevation: 2;
   margin: 10px;
   background-color: white;
   border-radius: 5px;

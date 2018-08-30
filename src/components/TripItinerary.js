@@ -9,7 +9,6 @@ const TripItineraryContainer = styled.View`
 `;
 
 const EventContainer = styled.View`
-  elevation: 2;
   padding: 10px;
   margin: 5px;
   flex: 1;
@@ -24,12 +23,7 @@ const EventDescription = styled.Text`
 export default class TripItinerary extends React.PureComponent {
   renderEvent = ({ item }) => {
     return (
-      <EventContainer
-        shadowColor="rgba(0, 0, 0, 0.3)"
-        shadowOffset={{ width: 0, height: 1 }}
-        shadowOpacity={1}
-        shadowRadius={2}
-      >
+      <EventContainer>
         <H3>{item.service.title['en-us']}</H3>
         <EventDescription>{item.service.description['en-us']}</EventDescription>
         <H3>

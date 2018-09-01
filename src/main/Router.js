@@ -1,10 +1,10 @@
 import React from 'react';
 import {createStackNavigator, createDrawerNavigator} from 'react-navigation';
 
-import Auth from './Auth';
-import Launch from './Launch';
-import SearchResults from './SearchResults';
-import SearchForm from './SearchForm';
+import Auth from '../scenes/Auth';
+import Launch from '../scenes/Launch';
+import SearchResults from '../scenes/SearchResults';
+import SearchForm from '../scenes/SearchForm';
 
 const MainNavigator = createDrawerNavigator({
   Auth: {

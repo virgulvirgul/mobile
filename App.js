@@ -1,4 +1,4 @@
 import React from 'react';
-import RootProvider from './src/scenes/RootProvider';
+import App from './src/main/App';
 
-export default RootProvider;
+export default App;

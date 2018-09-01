@@ -2,15 +2,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import { FetchProvider } from 'react-data-fetching';
-import createStore from '../redux/store.js';
-import initialState from '../redux/initialState';
-import Router from './Router.js';
+import store from './store';
+import Router from './Router';
 import { config } from '../libs/config'
 import { StatusBar, Text } from 'react-native';
 import Container from '../components/Container';
 import Loader from '../components/Loader';
-
-const store = createStore(initialState);
 
 export default class RootProvider extends React.PureComponent {
   render() {

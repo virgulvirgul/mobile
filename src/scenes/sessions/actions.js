@@ -1,10 +1,9 @@
 import axios from 'axios';
 import validator from 'validator';
-import { API_URL } from '../../libs/config';
+import { config } from '../../libs/config';
 
 export const types = {
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  VALIDATION_ERROR: 'VALIDATION_ERROR',
   LOGIN_ERROR: 'LOGIN_ERROR',
 };
 
@@ -56,25 +55,27 @@ export const loginRequest = (email, password) => {
   return async dispatch => {
     try {
       const auth0Response = await axios.post(
-        `${serverBaseURL}/users/login`,
+        `${config.API_URL}/users/login`,
         { username: email, password: password },
       ).catch( error => {
-        dispatch(setLoginError({code: error.response.status, message: error.response.data.error_description}));
+        dispatch(setLoginError({code: error.response.data.statusCode, message: error.response.data.message}));
       });
       if (auth0Response) {
         const auth0Token = auth0Response.data.access_token;
         const user = await axios.get(
-          `${serverBaseURL}/users/me`,
+          `${config.API_URL}/users/me`,
           { headers: {'Authorization': `Bearer ${auth0Token}`} }
         ).catch( error => {
-          dispatch(setLoginError({code: error.response.status, message: error.response.data.error_description}));
+          dispatch(setLoginError({code: error.response.data.statusCode, message: error.response.data.message}));
         });
-        const userData = user.data;
-        userData.accessToken = auth0Token;
-        dispatch(sessionsFetched({ session: userData }));
+        if (user) {
+          const userData = user.data;
+          userData.accessToken = auth0Token;
+          dispatch(sessionsFetched({ session: userData }));
+        }
       }
     } catch (error) {
-      dispatch(setLoginError({code: 401, message: error}));
+      dispatch(setLoginError({code: 401, message: error.message}));
     }
   };
 };

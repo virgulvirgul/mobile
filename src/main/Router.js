@@ -1,14 +1,14 @@
 import React from 'react';
 import {createStackNavigator, createDrawerNavigator} from 'react-navigation';
 
-import Auth from '../scenes/Auth';
+import LoginContainer from '../scenes/sessions/containers/LoginContainer';
 import Launch from '../scenes/Launch';
 import SearchResults from '../scenes/SearchResults';
 import SearchForm from '../scenes/SearchForm';
 
 const MainNavigator = createDrawerNavigator({
-  Auth: {
-    screen: Auth
+  Login: {
+    screen: LoginContainer
   },
   Launch: {
     screen: Launch
@@ -19,7 +19,7 @@ const MainNavigator = createDrawerNavigator({
   SearchForm: {
     screen: SearchForm
   }
-}, {initialRouteName: 'SearchForm'});
+}, {initialRouteName: 'Login'});
 
 const Router = createStackNavigator({
   Main: {

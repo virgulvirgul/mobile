@@ -19,7 +19,7 @@ const MainNavigator = createDrawerNavigator({
   SearchForm: {
     screen: SearchForm
   }
-}, {initialRouteName: 'Login'});
+}, {initialRouteName: 'SearchForm'});
 
 const Router = createStackNavigator({
   Main: {

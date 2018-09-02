@@ -7,7 +7,7 @@ export const types = {
   LOGIN_ERROR: 'LOGIN_ERROR',
 };
 
-export const sessionsFetched = session => {
+export const sessionFetched = session => {
   return {
     type: this.types.LOGIN_SUCCESS,
     payload: session,
@@ -15,40 +15,22 @@ export const sessionsFetched = session => {
 };
 
 export const setLoginError = payload => {
-  return dispatch => {
-    dispatch({
-      type: types.LOGIN_ERROR,
-      payload: {
-        code: payload.code,
-        message: payload.message,
-      },
-    });
+  return {
+    type: types.LOGIN_ERROR,
+    payload: {
+      code: payload.code,
+      message: payload.message,
+    },
   };
 };
 
-export const getCurrentUser = () => async dispatch => {
+export const logOut = () => async dispatch => {
   try {
-    if (localSession) {
-      const jsonUser = JSON.parse(localSession);
-      const currentUser = await axios.get(
-        `${serverBaseURL}/users/me`,
-        { headers: { 'Authorization': `Bearer ${jsonUser.accessToken}`}}
-      )
-      /*.catch( error => {
-        console.log(error);
-        // if token is expired :
-        // localStorage.removeItem(`please-${env}-session`);
-        // history.push('/');
-      });*/
-      dispatch(sessionsFetched({session: currentUser.data}));
-    }
-  } catch(error) {
+    await AsyncStorage.removeItem('user');
+    dispatch(sessionFetched({session: {}}));
+  } catch (error) {
     console.log(error);
   }
-};
-
-export const logOut = () => dispatch => {
-  dispatch(sessionsFetched({session: {}}));
 };
 
 export const loginRequest = (email, password) => {
@@ -71,11 +53,53 @@ export const loginRequest = (email, password) => {
         if (user) {
           const userData = user.data;
           userData.accessToken = auth0Token;
-          dispatch(sessionsFetched({ session: userData }));
+          dispatch(sessionFetched({ session: userData }));
+          storeUser(userData);
         }
       }
     } catch (error) {
       dispatch(setLoginError({code: 401, message: error.message}));
     }
   };
+};
+
+export const getUser = async () => {
+  try {
+    const user = await AsyncStorage.getItem('user');
+    if (user !== null) {
+      return JSON.parse(user);
+    }
+    return null;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchUser = () => async dispatch => {
+  try {
+    const localSession = await AsyncStorage.getItem('user');
+    if (localSession) {
+      const jsonUser = JSON.parse(localSession);
+      const currentUser = await axios.get(
+        `${serverBaseURL}/users/me`,
+        { headers: { 'Authorization': `Bearer ${jsonUser.accessToken}`}}
+      )
+      /*.catch( error => {
+        console.log(error);
+        // if token is expired :
+        // await AsyncStorage.removeItem(`user`);
+      });*/
+      dispatch(sessionFetched({session: currentUser.data}));
+    }
+  } catch(error) {
+    console.log(error);
+  }
+};
+
+const storeUser = async (user) => {
+  try {
+    await AsyncStorage.setItem('user', JSON.stringify(user));
+  } catch (error) {
+    console.log(error);
+  }
 };

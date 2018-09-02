@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button, Text, TextInput, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Text, TextInput, AsyncStorage } from 'react-native';
-import Auth0 from 'react-native-auth0';
-import decode from 'jwt-decode';
-
 import { config } from '../../../libs/config'
 import * as sessionsActions from './../actions';
 
@@ -19,12 +16,10 @@ const AuthContainer = styled.View`
   padding-right: 20px;
 `;
 
-const auth0 = new Auth0({ domain: config.AUTH0_DOMAIN, clientId: config.AUTH0_CLIENT_ID });
-
 class LoginContainer extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: "",
       password: "",
@@ -32,30 +27,8 @@ class LoginContainer extends React.Component {
     };
   };
 
-  _storeUser = async (user) => {
-    try {
-      await AsyncStorage.setItem('user', JSON.stringify(user));
-    }  catch (error) {
-      console.log(error);
-    }
-  }
-
-  _retrieveUser = async () => {
-    try {
-      const user = await AsyncStorage.getItem('user');
-      if (user !== null) {
-        return JSON.parse(user);
-      }
-
-      return null;
-     } catch (error) {
-       console.log(error);
-     }
-  }
-
   logInWithCredentials = () => {
     this.props.loginRequest(this.state.email, this.state.password);
-    // this._storeUser(decode(result.idToken));
   };
 
   render() {

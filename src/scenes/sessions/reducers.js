@@ -2,21 +2,21 @@ import * as sessions_actions from './actions';
 
 const initialState = {
   session: {},
-  loginError: {},
+  sessionError: {},
 };
 
 export default function SessionsReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case sessions_actions.types.LOGIN_SUCCESS:
+    case sessions_actions.types.SESSION_SUCCESS:
       return {
         ...state,
         session: action.payload.session,
-        loginError: {},
+        sessionError: {},
       };
-    case sessions_actions.types.LOGIN_ERROR:
+    case sessions_actions.types.SESSION_ERROR:
       return {
         ...state,
-        loginError: action.payload,
+        sessionError: action.payload,
       };
     default:
       return state;

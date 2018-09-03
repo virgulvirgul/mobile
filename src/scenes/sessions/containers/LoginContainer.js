@@ -28,7 +28,7 @@ class LoginContainer extends React.Component {
   };
 
   logInWithCredentials = () => {
-    this.props.loginRequest(this.state.email, this.state.password);
+    this.props.loginRequest(this.state.email, this.state.password, this.props.navigation);
   };
 
   render() {

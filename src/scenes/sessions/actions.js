@@ -9,7 +9,7 @@ export const types = {
 
 export const sessionFetched = session => {
   return {
-    type: this.types.LOGIN_SUCCESS,
+    type: types.LOGIN_SUCCESS,
     payload: session,
   };
 };
@@ -33,7 +33,7 @@ export const logOut = () => async dispatch => {
   }
 };
 
-export const loginRequest = (email, password) => {
+export const loginRequest = (email, password, navigation) => {
   return async dispatch => {
     try {
       const auth0Response = await axios.post(
@@ -55,6 +55,7 @@ export const loginRequest = (email, password) => {
           userData.accessToken = auth0Token;
           dispatch(sessionFetched({ session: userData }));
           storeUser(userData);
+          navigation.navigate('SearchForm');
         }
       }
     } catch (error) {

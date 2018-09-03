@@ -27,7 +27,7 @@ export const setLoginError = payload => {
 export const logOut = () => async dispatch => {
   try {
     await AsyncStorage.removeItem('user');
-    dispatch(sessionFetched({session: {}}));
+    dispatch(sessionFetched({ session: {} }));
   } catch (error) {
     console.log(error);
   }
@@ -36,20 +36,28 @@ export const logOut = () => async dispatch => {
 export const loginRequest = (email, password, navigation) => {
   return async dispatch => {
     try {
-      const auth0Response = await axios.post(
-        `${config.API_URL}/users/login`,
-        { username: email, password: password },
-      ).catch( error => {
-        dispatch(setLoginError({code: error.response.data.statusCode, message: error.response.data.message}));
-      });
+      const auth0Response = await axios
+        .post(`${config.API_URL}/users/login`, { username: email, password: password })
+        .catch(error => {
+          dispatch(
+            setLoginError({
+              code: error.response.data.statusCode,
+              message: error.response.data.message,
+            }),
+          );
+        });
       if (auth0Response) {
         const auth0Token = auth0Response.data.access_token;
-        const user = await axios.get(
-          `${config.API_URL}/users/me`,
-          { headers: {'Authorization': `Bearer ${auth0Token}`} }
-        ).catch( error => {
-          dispatch(setLoginError({code: error.response.data.statusCode, message: error.response.data.message}));
-        });
+        const user = await axios
+          .get(`${config.API_URL}/users/me`, { headers: { Authorization: `Bearer ${auth0Token}` } })
+          .catch(error => {
+            dispatch(
+              setLoginError({
+                code: error.response.data.statusCode,
+                message: error.response.data.message,
+              }),
+            );
+          });
         if (user) {
           const userData = user.data;
           userData.accessToken = auth0Token;
@@ -59,7 +67,7 @@ export const loginRequest = (email, password, navigation) => {
         }
       }
     } catch (error) {
-      dispatch(setLoginError({code: 401, message: error.message}));
+      dispatch(setLoginError({ code: 401, message: error.message }));
     }
   };
 };
@@ -81,23 +89,22 @@ export const fetchUser = () => async dispatch => {
     const localSession = await AsyncStorage.getItem('user');
     if (localSession) {
       const jsonUser = JSON.parse(localSession);
-      const currentUser = await axios.get(
-        `${serverBaseURL}/users/me`,
-        { headers: { 'Authorization': `Bearer ${jsonUser.accessToken}`}}
-      )
+      const currentUser = await axios.get(`${serverBaseURL}/users/me`, {
+        headers: { Authorization: `Bearer ${jsonUser.accessToken}` },
+      });
       /*.catch( error => {
         console.log(error);
         // if token is expired :
         // await AsyncStorage.removeItem(`user`);
       });*/
-      dispatch(sessionFetched({session: currentUser.data}));
+      dispatch(sessionFetched({ session: currentUser.data }));
     }
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 };
 
-const storeUser = async (user) => {
+const storeUser = async user => {
   try {
     await AsyncStorage.setItem('user', JSON.stringify(user));
   } catch (error) {

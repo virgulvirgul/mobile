@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Button, Text, TextInput, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { config } from '../../../libs/config'
+import { config } from '../../../libs/config';
 import * as sessionsActions from './../actions';
 
 const AuthContainer = styled.View`
@@ -17,15 +17,14 @@ const AuthContainer = styled.View`
 `;
 
 class LoginContainer extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
-      user: null
+      email: '',
+      password: '',
+      user: null,
     };
-  };
+  }
 
   logInWithCredentials = () => {
     this.props.loginRequest(this.state.email, this.state.password, this.props.navigation);
@@ -34,27 +33,24 @@ class LoginContainer extends React.Component {
   render() {
     return (
       <AuthContainer testID="Auth">
-        {
-          this.props.loginError.message &&
-          <Text>{JSON.stringify(this.props.loginError)}</Text>
-        }
+        {this.props.loginError.message && <Text>{JSON.stringify(this.props.loginError)}</Text>}
         <TextInput
           placeholder="E-mail"
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={(value) => this.setState({email: value})}
+          onChangeText={value => this.setState({ email: value })}
           value={this.state.email}
         />
         <TextInput
           secureTextEntry={true}
           placeholder="Password"
           style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 20 }}
-          onChangeText={(value) => this.setState({password: value})}
+          onChangeText={value => this.setState({ password: value })}
           value={this.state.password}
         />
-        <Button title="Log in" onPress={this.logInWithCredentials}/>
+        <Button title="Log in" onPress={this.logInWithCredentials} />
       </AuthContainer>
     );
-  };
+  }
 }
 
 const mapStateToProps = state => {

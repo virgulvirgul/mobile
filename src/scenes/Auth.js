@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Button, Text, TextInput, AsyncStorage } from 'react-native';
 import Auth0 from 'react-native-auth0';
 import decode from 'jwt-decode';
-import { config } from '../libs/config'
+import { config } from '../libs/config';
 
 const AuthContainer = styled.View`
   width: 100%;
@@ -18,23 +18,22 @@ const AuthContainer = styled.View`
 const auth0 = new Auth0({ domain: config.AUTH0_DOMAIN, clientId: config.AUTH0_CLIENT_ID });
 
 export default class Auth extends React.Component {
-
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: "",
-      user: null
+      username: '',
+      password: '',
+      user: null,
     };
-  };
+  }
 
-  _storeUser = async (user) => {
+  _storeUser = async user => {
     try {
       await AsyncStorage.setItem('user', JSON.stringify(user));
-    }  catch (error) {
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   _retrieveUser = async () => {
     try {
@@ -44,16 +43,19 @@ export default class Auth extends React.Component {
       }
 
       return null;
-     } catch (error) {
-       console.log(error);
-     }
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   logInWithCredentials = () => {
-    auth0
-      .auth
-      .passwordRealm({username: this.state.username, password: this.state.password, realm: "Username-Password-Authentication"})
-      .then((result) => {
+    auth0.auth
+      .passwordRealm({
+        username: this.state.username,
+        password: this.state.password,
+        realm: 'Username-Password-Authentication',
+      })
+      .then(result => {
         this._storeUser(decode(result.idToken));
       })
       .catch(console.error);
@@ -65,18 +67,18 @@ export default class Auth extends React.Component {
         <TextInput
           placeholder="E-mail"
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={(value) => this.setState({username: value})}
+          onChangeText={value => this.setState({ username: value })}
           value={this.state.username}
         />
         <TextInput
           secureTextEntry={true}
           placeholder="Password"
           style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 20 }}
-          onChangeText={(value) => this.setState({password: value})}
+          onChangeText={value => this.setState({ password: value })}
           value={this.state.password}
         />
-        <Button title="Log in" onPress={this.logInWithCredentials}/>
+        <Button title="Log in" onPress={this.logInWithCredentials} />
       </AuthContainer>
     );
-  };
+  }
 }

@@ -3,4 +3,4 @@ export const config = {
   AUTH0_CLIENT_ID: 'hdP9sSzartSH2lvR2oABAWd0Cq7UUQVv',
   API_URL: 'https://staging-api.please.com',
   DEFAULT_LOCALE: 'en-us',
-}
+};

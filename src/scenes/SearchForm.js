@@ -55,13 +55,20 @@ const GooglePlacesInput = () => {
   );
 };
 
-export default class SearchForm extends React.PureComponent {
+export default class SearchForm extends React.Component {
   constructor() {
     super();
     this.state = {
       location: '',
-      fruits: [],
+      tags: [],
     };
+  }
+
+  selectTags = (index) => {
+    const newState = Object.assign({}, this.state);
+    let arr = newState.tags;
+    arr[index] = !this.state.tags[index];
+    this.setState({tags: arr});
   }
 
   render() {
@@ -72,7 +79,7 @@ export default class SearchForm extends React.PureComponent {
           <Fetch path="/tags">
             {({ data }) => {
               return data.map((item, i) => (
-                <CheckBox title={item.names['en-us']} checked={this.state.checked} />
+                <CheckBox title={item.names['en-us']} key={i} checked={this.state.tags[i]} onPress={() => this.selectTags(i)} />
               ));
             }}
           </Fetch>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
 import { Button, Text, View, TextInput } from 'react-native';
 import { Fetch } from 'react-data-fetching';
 import { Container, H1 } from '../components';
@@ -10,6 +11,7 @@ const SearchFormContainer = styled.View`
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
 `;
 
 const CheckboxContainer = styled.View`
@@ -32,7 +34,7 @@ const GooglePlacesInput = () => {
       }}
       getDefaultValue={() => ''}
       query={{
-        key: '',
+        key: GOOGLE_MAPS_API_KEY,
         language: 'en',
         types: '(cities)',
       }}

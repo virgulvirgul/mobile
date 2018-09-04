@@ -25,7 +25,7 @@ const MainNavigator = createDrawerNavigator(
       screen: RegistrationContainer,
     },
   },
-  { initialRouteName: 'Launch' },
+  { initialRouteName: 'SearchForm' },
 );
 
 const Router = createStackNavigator(

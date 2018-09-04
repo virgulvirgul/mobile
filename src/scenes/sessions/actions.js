@@ -123,7 +123,7 @@ export const registrationRequest = (username, email, password, navigation) => {
           dispatch(
             setSessionError({
               code: error.response.data.statusCode,
-              message: error.response.data.message,
+              message: error.response.data.description,
             }),
           );
         });

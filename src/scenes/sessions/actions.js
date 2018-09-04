@@ -1,6 +1,6 @@
 import axios from 'axios';
 import validator from 'validator';
-import { config } from '../../libs/config';
+import config from '../../libs/config';
 
 export const types = {
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',

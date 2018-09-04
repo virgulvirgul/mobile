@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { FetchProvider } from 'react-data-fetching';
 import store from './store';
 import Router from './Router';
-import { config } from '../libs/config'
+import config from '../libs/config'
 import { StatusBar, Text } from 'react-native';
 import Container from '../components/Container';
 import Loader from '../components/Loader';

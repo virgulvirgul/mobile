@@ -11,7 +11,7 @@ const SearchResultsContainer = styled.View`
   flex-direction: row;
   height: 100%;
   position: relative;
-  background: white;
+  background: #f7f7f7;
 `;
 
 const CardsContainer = styled.View`

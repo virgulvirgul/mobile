@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Button, Text, TextInput, AsyncStorage } from 'react-native';
 import Auth0 from 'react-native-auth0';
 import decode from 'jwt-decode';
-import { config } from '../libs/config'
+import config from '../libs/config';
 
 const AuthContainer = styled.View`
   width: 100%;

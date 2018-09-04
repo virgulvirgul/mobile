@@ -43,16 +43,16 @@ export const loginRequest = (email, password, navigation) => {
         dispatch(setSessionError({code: error.response.status, message: error.response.data.error_description}));
       });
       if (auth0Response) {
-        const auth0Token = auth0Response.data.access_token;
+        const jwtToken = auth0Response.data.access_token;
         const user = await axios.get(
           `${config.API_URL}/users/me`,
-          { headers: {'Authorization': `Bearer ${auth0Token}`} }
+          { headers: {'Authorization': `Bearer ${jwtToken}`} }
         ).catch( error => {
           dispatch(setSessionError({code: error.response.status, message: error.response.data.error_description}));
         });
         if (user) {
           const userData = user.data;
-          userData.accessToken = auth0Token;
+          userData.accessToken = jwtToken;
           dispatch(sessionFetched({ session: userData }));
           storeUser(userData);
           navigation.navigate('SearchForm');
@@ -79,16 +79,16 @@ export const registrationRequest = (username, email, password, navigation) => {
             dispatch(setSessionError({code: error.response.data.statusCode, message: error.response.data.message}));
           });
           if (auth0Response) {
-            const auth0Token = auth0Response.data.access_token;
+            const jwtToken = auth0Response.data.access_token;
             const user = await axios.get(
               `${config.API_URL}/users/me`,
-              { headers: {'Authorization': `Bearer ${auth0Token}`} }
+              { headers: {'Authorization': `Bearer ${jwtToken}`} }
             ).catch( error => {
               dispatch(setSessionError({code: error.response.data.statusCode, message: error.response.data.message}));
             });
             if (user) {
               const userData = user.data;
-              userData.accessToken = auth0Token;
+              userData.accessToken = jwtToken;
               dispatch(sessionFetched({ session: userData }));
               storeUser(userData);
               navigation.navigate('SearchForm');

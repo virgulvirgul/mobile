@@ -64,12 +64,12 @@ export default class SearchForm extends React.Component {
     };
   }
 
-  selectTags = (index) => {
+  selectTags = index => {
     const newState = Object.assign({}, this.state);
     let arr = newState.tags;
     arr[index] = !this.state.tags[index];
-    this.setState({tags: arr});
-  }
+    this.setState({ tags: arr });
+  };
 
   render() {
     return (
@@ -79,7 +79,12 @@ export default class SearchForm extends React.Component {
           <Fetch path="/tags">
             {({ data }) => {
               return data.map((item, i) => (
-                <CheckBox title={item.names['en-us']} key={i} checked={this.state.tags[i]} onPress={() => this.selectTags(i)} />
+                <CheckBox
+                  title={item.names['en-us']}
+                  key={i}
+                  checked={this.state.tags[i]}
+                  onPress={() => this.selectTags(i)}
+                />
               ));
             }}
           </Fetch>

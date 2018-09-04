@@ -22,9 +22,10 @@ const MainNavigator = createDrawerNavigator(
       screen: SearchForm,
     },
     Registration: {
-      screen: RegistrationContainer
-    }
-  }, { initialRouteName: 'Launch' },
+      screen: RegistrationContainer,
+    },
+  },
+  { initialRouteName: 'Launch' },
 );
 
 const Router = createStackNavigator(

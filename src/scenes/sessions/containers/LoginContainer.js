@@ -33,10 +33,7 @@ class LoginContainer extends React.Component {
   render() {
     return (
       <AuthContainer testID="Auth">
-        {
-          this.props.sessionError.message &&
-          <Text>{JSON.stringify(this.props.sessionError)}</Text>
-        }
+        {this.props.sessionError.message && <Text>{JSON.stringify(this.props.sessionError)}</Text>}
         <TextInput
           placeholder="E-mail"
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}

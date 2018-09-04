@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Button, Text, TextInput, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { config } from '../../../libs/config'
+import { config } from '../../../libs/config';
 import * as sessionsActions from './../actions';
 
 const AuthContainer = styled.View`
@@ -17,51 +17,52 @@ const AuthContainer = styled.View`
 `;
 
 class RegistrationContainer extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      email: "",
-      password: "",
-      user: null
+      username: '',
+      email: '',
+      password: '',
+      user: null,
     };
-  };
+  }
 
   register = () => {
-    this.props.registrationRequest(this.state.username, this.state.email, this.state.password, this.props.navigation);
+    this.props.registrationRequest(
+      this.state.username,
+      this.state.email,
+      this.state.password,
+      this.props.navigation,
+    );
   };
 
   render() {
     return (
       <AuthContainer testID="Auth">
-        {
-          this.props.sessionError.message &&
-          <Text>{JSON.stringify(this.props.sessionError)}</Text>
-        }
+        {this.props.sessionError.message && <Text>{JSON.stringify(this.props.sessionError)}</Text>}
         <TextInput
           placeholder="Username"
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          onChangeText={(value) => this.setState({username: value})}
+          onChangeText={value => this.setState({ username: value })}
           value={this.state.username}
         />
         <TextInput
           placeholder="E-mail"
           style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 20 }}
-          onChangeText={(value) => this.setState({email: value})}
+          onChangeText={value => this.setState({ email: value })}
           value={this.state.email}
         />
         <TextInput
           secureTextEntry={true}
           placeholder="Password"
           style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginTop: 20 }}
-          onChangeText={(value) => this.setState({password: value})}
+          onChangeText={value => this.setState({ password: value })}
           value={this.state.password}
         />
-        <Button title="Register" onPress={this.register}/>
+        <Button title="Register" onPress={this.register} />
       </AuthContainer>
     );
-  };
+  }
 }
 
 const mapStateToProps = state => {

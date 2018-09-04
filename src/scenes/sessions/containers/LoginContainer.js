@@ -33,7 +33,7 @@ class LoginContainer extends React.Component {
   render() {
     return (
       <AuthContainer testID="Auth">
-        {this.props.loginError.message && <Text>{JSON.stringify(this.props.loginError)}</Text>}
+        {this.props.sessionError.message && <Text>{JSON.stringify(this.props.sessionError)}</Text>}
         <TextInput
           placeholder="E-mail"
           style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
@@ -56,7 +56,7 @@ class LoginContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     session: state.SessionsReducer.session,
-    loginError: state.SessionsReducer.loginError,
+    sessionError: state.SessionsReducer.sessionError,
   };
 };
 

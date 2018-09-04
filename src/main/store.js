@@ -6,9 +6,6 @@ import allReducers from './reducers';
 //const middlewares = [thunk, tracker];
 const middlewares = [thunk];
 
-const store = createStore(
-  allReducers,
-  applyMiddleware(...middlewares)
-);
+const store = createStore(allReducers, applyMiddleware(...middlewares));
 
 export default store;

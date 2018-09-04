@@ -37,29 +37,25 @@ const CrumbText = styled.Text`
 export default class TripCard extends React.PureComponent {
   render() {
     return (
-      <TripCardContainer
-        testID="TripCard"
-        height={deviceHeight - 50}
-      >
-        <ScrollView
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}>
-        <Image
-          source={{ uri: this.props.data.item.media[0].files.large.url }}
-          indicator={ProgressBar}
-          indicatorProps={{
-            color: 'rgba(79, 183, 151, 1)',
-          }}
-          style={{
-            flex: 1,
-            height: 200,
-          }}/>
-        <CardContent>
-          <H2>{this.props.data.item.title['en-us']}</H2>
-          <CardDescription>{this.props.data.item.description['en-us']}</CardDescription>
-          <TripItinerary data={this.props.data.item.services} />
-          <Button title="Book trip" color="#4fb797" onPress={() => alert("booked")} />
-        </CardContent>
+      <TripCardContainer testID="TripCard" height={deviceHeight - 50}>
+        <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+          <Image
+            source={{ uri: this.props.data.item.media[0].files.large.url }}
+            indicator={ProgressBar}
+            indicatorProps={{
+              color: 'rgba(79, 183, 151, 1)',
+            }}
+            style={{
+              flex: 1,
+              height: 200,
+            }}
+          />
+          <CardContent>
+            <H2>{this.props.data.item.title['en-us']}</H2>
+            <CardDescription>{this.props.data.item.description['en-us']}</CardDescription>
+            <TripItinerary data={this.props.data.item.services} />
+            <Button title="Book trip" color="#4fb797" onPress={() => alert('booked')} />
+          </CardContent>
         </ScrollView>
       </TripCardContainer>
     );

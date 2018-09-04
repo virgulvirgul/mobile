@@ -27,7 +27,7 @@ export const setSessionError = payload => {
 export const logOut = () => async dispatch => {
   try {
     await AsyncStorage.removeItem('user');
-    dispatch(sessionFetched({session: {}}));
+    dispatch(sessionFetched({ session: {} }));
   } catch (error) {
     console.log(error);
   }
@@ -123,23 +123,22 @@ export const fetchUser = () => async dispatch => {
     const localSession = await AsyncStorage.getItem('user');
     if (localSession) {
       const jsonUser = JSON.parse(localSession);
-      const currentUser = await axios.get(
-        `${serverBaseURL}/users/me`,
-        { headers: { 'Authorization': `Bearer ${jsonUser.accessToken}`}}
-      )
+      const currentUser = await axios.get(`${serverBaseURL}/users/me`, {
+        headers: { Authorization: `Bearer ${jsonUser.accessToken}` },
+      });
       /*.catch( error => {
         console.log(error);
         // if token is expired :
         // await AsyncStorage.removeItem(`user`);
       });*/
-      dispatch(sessionFetched({session: currentUser.data}));
+      dispatch(sessionFetched({ session: currentUser.data }));
     }
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 };
 
-const storeUser = async (user) => {
+const storeUser = async user => {
   try {
     await AsyncStorage.setItem('user', JSON.stringify(user));
   } catch (error) {

@@ -39,7 +39,7 @@ export default class Onboarding extends React.PureComponent {
                 data={data.trips}
                 renderItem={this.renderItem}
                 sliderWidth={deviceWidth}
-                itemWidth={deviceWidth-50}
+                itemWidth={deviceWidth - 50}
                 inactiveSlideScale={1}
               />
             </CardsContainer>

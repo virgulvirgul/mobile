@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Button, Text, TextInput, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { config } from '../../../libs/config';
+import config from '../../../libs/config';
 import * as sessionsActions from './../actions';
 
 const AuthContainer = styled.View`

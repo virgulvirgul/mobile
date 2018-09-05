@@ -67,19 +67,13 @@ export default class CollapsableEvent extends React.PureComponent {
       return null;
     }
 
+    console.log(this.props.service)
+
     return (
       <InsideContent>
         <Line>
-          <Icon name="clock" size={20} style={iconStyles.collapsed} />
-          <IconLabel>After 7:00 pm</IconLabel>
-        </Line>
-        <Line>
           <Icon name="map-marker" size={20} style={iconStyles.collapsed} />
-          <IconLabel>1092 Southern Street, NY, 10011</IconLabel>
-        </Line>
-        <Line>
-          <Icon name="phone" size={20} style={iconStyles.collapsed} />
-          <IconLabel>After 7:00 pm</IconLabel>
+          <IconLabel>{this.props.service.location.formattedAddress}</IconLabel>
         </Line>
       </InsideContent>
     );

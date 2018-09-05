@@ -4,7 +4,7 @@ import { Button, Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { config } from '../../../libs/config';
+import config from '../../../libs/config';
 import * as accountActions from './../actions';
 
 class MyTripsContainer extends React.Component {

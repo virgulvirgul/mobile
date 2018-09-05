@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Dimensions, Button, ScrollView } from 'react-native';
+import { Dimensions, ScrollView } from 'react-native';
 import styled from 'styled-components';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar';
+import { getLang } from '../libs/utils';
 
-import { H2, TripItinerary } from '.';
+import { H2, TripItinerary, Button } from '.';
 
 const { height: deviceHeight } = Dimensions.get('window');
 
@@ -35,11 +35,10 @@ const CrumbText = styled.Text`
   font-size: 12px;
 `;
 
-class TripCard extends React.PureComponent {
+export default class TripCard extends React.PureComponent {
   render() {
     const {
       data: { item },
-      language,
     } = this.props;
 
     return (
@@ -63,10 +62,12 @@ class TripCard extends React.PureComponent {
             }}
           />
           <CardContent>
-            <H2>{item.title[language]}</H2>
-            <CardDescription>{item.description[language]}</CardDescription>
+            <H2>{item.title[getLang()]}</H2>
+            <CardDescription>{item.description[getLang()]}</CardDescription>
             <TripItinerary services={item.services} />
-            <Button title="Book trip" color="#4fb797" onPress={() => alert("booked")} />
+            <Button color="primary" onPress={() => alert("booked")}>
+              Book trip
+            </Button>
           </CardContent>
         </ScrollView>
       </TripCardContainer>
@@ -77,11 +78,3 @@ class TripCard extends React.PureComponent {
 TripCard.propTypes = {
   data: PropTypes.object.isRequired,
 };
-
-const mapStateToProps = state => ({
-  language: state.settings.language,
-});
-
-export default connect(
-  mapStateToProps,
-)(TripCard);

@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { H1, VoiceRecorder } from '../../../components';
-import { config } from '../../../libs/config';
+import config from '../../../libs/config';
 import * as searchResultsActions from './../actions';
 
 const LaunchContainer = styled.View`

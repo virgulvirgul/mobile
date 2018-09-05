@@ -26,7 +26,7 @@ const MainNavigator = createDrawerNavigator(
     },
     MyTrips: {
       screen: MyTripsContainer,
-    }
+    },
   },
   { initialRouteName: 'VoiceSearch' },
 );

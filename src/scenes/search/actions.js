@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { config } from '../../libs/config';
+import config from '../../libs/config';
 import navigationService from '../../services/navigation'
 
 const types = {

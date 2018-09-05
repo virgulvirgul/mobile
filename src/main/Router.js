@@ -3,29 +3,33 @@ import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import LoginContainer from '../scenes/sessions/containers/LoginContainer';
 import RegistrationContainer from '../scenes/sessions/containers/RegistrationContainer';
-import Launch from '../scenes/Launch';
-import SearchResults from '../scenes/SearchResults';
-import SearchForm from '../scenes/SearchForm';
+import SearchResultsContainer from '../scenes/searchResults/containers/SearchResultsContainer';
+import SearchFormContainer from '../scenes/searchResults/containers/SearchFormContainer';
+import VoiceSearchContainer from '../scenes/searchResults/containers/VoiceSearchContainer';
+import MyTripsContainer from '../scenes/account/containers/MyTripsContainer';
 
 const MainNavigator = createDrawerNavigator(
   {
     Login: {
       screen: LoginContainer,
     },
-    Launch: {
-      screen: Launch,
-    },
-    SearchResults: {
-      screen: SearchResults,
-    },
-    SearchForm: {
-      screen: SearchForm,
-    },
     Registration: {
       screen: RegistrationContainer,
     },
+    SearchResults: {
+      screen: SearchResultsContainer,
+    },
+    SearchForm: {
+      screen: SearchFormContainer,
+    },
+    VoiceSearch: {
+      screen: VoiceSearchContainer,
+    },
+    MyTrips: {
+      screen: MyTripsContainer,
+    }
   },
-  { initialRouteName: 'SearchForm' },
+  { initialRouteName: 'VoiceSearch' },
 );
 
 const Router = createStackNavigator(

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Dimensions, Text } from 'react-native';
+import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { Fetch } from 'react-data-fetching';
-import TripCard from '../components/TripCard';
+import TripCard from '../../../components/TripCard';
 
-const SearchResultsContainer = styled.View`
+const SearchResultsWrapper = styled.View`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -14,7 +14,7 @@ const SearchResultsContainer = styled.View`
   background: white;
 `;
 
-const CardsContainer = styled.View`
+const CardsWrapper = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -24,17 +24,26 @@ const CardsContainer = styled.View`
 
 const { width: deviceWidth } = Dimensions.get('window');
 
-export default class Onboarding extends React.PureComponent {
-  renderItem = item => {
-    return <TripCard data={item} />;
-  };
+export default class SearchResultsContainer extends React.PureComponent {
+  renderItem = item => <TripCard data={item} />;
 
   render() {
+    const { getParam } = this.props.navigation;
+    const tags = getParam('tags');
+    const lat = getParam('lat');
+    const lng = getParam('lng');
+
+    const params = {
+      ...(tags ? { tags } : tags),
+      ...(lat ? { lat } : lat),
+      ...(lng ? { lng } : lng),
+    };
+
     return (
-      <SearchResultsContainer>
-        <Fetch path="/search">
+      <SearchResultsWrapper>
+        <Fetch path="/search" params={params}>
           {({ data }) => (
-            <CardsContainer>
+            <CardsWrapper>
               <Carousel
                 data={data.trips}
                 renderItem={this.renderItem}
@@ -42,10 +51,10 @@ export default class Onboarding extends React.PureComponent {
                 itemWidth={deviceWidth - 50}
                 inactiveSlideScale={1}
               />
-            </CardsContainer>
+            </CardsWrapper>
           )}
         </Fetch>
-      </SearchResultsContainer>
+      </SearchResultsWrapper>
     );
   }
 }

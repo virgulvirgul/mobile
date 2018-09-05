@@ -5,8 +5,7 @@ import { TouchableNativeFeedback, StyleSheet, Keyboard } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import CitiesAutocomplete from './CitiesAutocomplete';
-
-const lang = 'en-us';
+import { getLang } from '../../libs/utils';
 
 const Field = React.Fragment;
 
@@ -83,7 +82,7 @@ export default class SearchForm extends React.Component {
 
   search = () =>
     this.props.handleSearch({
-      tags: this.props.tags.filter((t, i) => this.state.tags[i]).map(t => t.names[lang]),
+      tags: this.props.tags.filter((t, i) => this.state.tags[i]).map(t => t.names[getLang()]),
       lat: this.state.location.lat,
       lng: this.state.location.lng,
     });
@@ -91,7 +90,7 @@ export default class SearchForm extends React.Component {
   renderTags = () =>
     this.props.tags.map((item, i) => (
       <CheckBox
-        title={capitalizeFirstChar(item.names['en-us'])}
+        title={capitalizeFirstChar(item.names[getLang()])}
         key={i}
         checked={this.state.tags[i]}
         onPress={() => this.selectTag(i)}

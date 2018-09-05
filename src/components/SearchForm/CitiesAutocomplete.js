@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { GOOGLE_MAPS_API_KEY } from 'react-native-dotenv';
-
-const language = 'en-us';
+import { config } from '../../libs/config';
+import { getLang } from '../../libs/utils';
 
 const CitiesAutoComplete = ({ inputStyle, onSelect }) => (
   <GooglePlacesAutocomplete
@@ -22,8 +21,8 @@ const CitiesAutoComplete = ({ inputStyle, onSelect }) => (
     }}
     getDefaultValue={() => ''}
     query={{
-      key: GOOGLE_MAPS_API_KEY,
-      language,
+      key: config.GOOGLE_MAPS_API_KEY,
+      language: getLang(),
       types: '(cities)',
     }}
     styles={{

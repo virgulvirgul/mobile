@@ -1,32 +1,46 @@
-import React from 'react';
-import {createStackNavigator, createDrawerNavigator} from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import LoginContainer from '../scenes/sessions/containers/LoginContainer';
-import Launch from '../scenes/Launch';
-import SearchResults from '../scenes/SearchResults';
-import SearchForm from '../scenes/SearchForm';
+import RegistrationContainer from '../scenes/sessions/containers/RegistrationContainer';
+import SearchResultsContainer from '../scenes/searchResults/containers/SearchResultsContainer';
+import SearchFormContainer from '../scenes/search/containers/SearchFormContainer';
+import VoiceSearchContainer from '../scenes/searchResults/containers/VoiceSearchContainer';
+import MyTripsContainer from '../scenes/account/containers/MyTripsContainer';
 
-const MainNavigator = createDrawerNavigator({
-  Login: {
-    screen: LoginContainer
+const MainNavigator = createDrawerNavigator(
+  {
+    Login: {
+      screen: LoginContainer,
+    },
+    Registration: {
+      screen: RegistrationContainer,
+    },
+    SearchResults: {
+      screen: SearchResultsContainer,
+    },
+    SearchForm: {
+      screen: SearchFormContainer,
+    },
+    VoiceSearch: {
+      screen: VoiceSearchContainer,
+    },
+    MyTrips: {
+      screen: MyTripsContainer,
+    }
   },
-  Launch: {
-    screen: Launch
-  },
-  SearchResults: {
-    screen: SearchResults
-  },
-  SearchForm: {
-    screen: SearchForm
-  }
-}, {initialRouteName: 'Launch'});
+  { initialRouteName: 'VoiceSearch' },
+);
 
-const Router = createStackNavigator({
-  Main: {
-    screen: MainNavigator
-  }
-}, {
-  headerMode: 'none'
-}, {initialRouteName: 'Main'});
+const Router = createStackNavigator(
+  {
+    Main: {
+      screen: MainNavigator,
+    },
+  },
+  {
+    headerMode: 'none',
+  },
+  { initialRouteName: 'Main' },
+);
 
 export default Router;

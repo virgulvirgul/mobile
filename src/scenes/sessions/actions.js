@@ -3,20 +3,20 @@ import validator from 'validator';
 import config from '../../libs/config';
 
 export const types = {
-  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
-  LOGIN_ERROR: 'LOGIN_ERROR',
+  SESSION_SUCCESS: 'SESSION_SUCCESS',
+  SESSION_ERROR: 'SESSION_ERROR',
 };
 
 export const sessionFetched = session => {
   return {
-    type: types.LOGIN_SUCCESS,
+    type: types.SESSION_SUCCESS,
     payload: session,
   };
 };
 
-export const setLoginError = payload => {
+export const setSessionError = payload => {
   return {
-    type: types.LOGIN_ERROR,
+    type: types.SESSION_ERROR,
     payload: {
       code: payload.code,
       message: payload.message,
@@ -27,7 +27,7 @@ export const setLoginError = payload => {
 export const logOut = () => async dispatch => {
   try {
     await AsyncStorage.removeItem('user');
-    dispatch(sessionFetched({session: {}}));
+    dispatch(sessionFetched({ session: {} }));
   } catch (error) {
     console.log(error);
   }
@@ -36,30 +36,99 @@ export const logOut = () => async dispatch => {
 export const loginRequest = (email, password, navigation) => {
   return async dispatch => {
     try {
-      const auth0Response = await axios.post(
-        `${config.API_URL}/users/login`,
-        { username: email, password: password },
-      ).catch( error => {
-        dispatch(setLoginError({code: error.response.data.statusCode, message: error.response.data.message}));
-      });
-      if (auth0Response) {
-        const auth0Token = auth0Response.data.access_token;
-        const user = await axios.get(
-          `${config.API_URL}/users/me`,
-          { headers: {'Authorization': `Bearer ${auth0Token}`} }
-        ).catch( error => {
-          dispatch(setLoginError({code: error.response.data.statusCode, message: error.response.data.message}));
+      const auth0Response = await axios
+        .post(`${config.API_URL}/users/login`, { username: email, password: password })
+        .catch(error => {
+          dispatch(
+            setSessionError({
+              code: error.response.status,
+              message: error.response.data.error_description,
+            }),
+          );
         });
+      if (auth0Response) {
+        const jwtToken = auth0Response.data.access_token;
+        const user = await axios
+          .get(`${config.API_URL}/users/me`, { headers: { Authorization: `Bearer ${jwtToken}` } })
+          .catch(error => {
+            dispatch(
+              setSessionError({
+                code: error.response.status,
+                message: error.response.data.error_description,
+              }),
+            );
+          });
         if (user) {
           const userData = user.data;
-          userData.accessToken = auth0Token;
+          userData.accessToken = jwtToken;
           dispatch(sessionFetched({ session: userData }));
           storeUser(userData);
           navigation.navigate('SearchForm');
         }
       }
     } catch (error) {
-      dispatch(setLoginError({code: 401, message: error.message}));
+      dispatch(setSessionError({ code: 401, message: error.message }));
+    }
+  };
+};
+
+export const registrationRequest = (username, email, password, navigation) => {
+  return async dispatch => {
+    try {
+      axios
+        .post(`${config.API_URL}/users/signup`, {
+          username: username,
+          email: email,
+          password: password,
+        })
+        .then(async res => {
+          try {
+            const auth0Response = await axios
+              .post(`${config.API_URL}/users/login`, { username: email, password: password })
+              .catch(error => {
+                dispatch(
+                  setSessionError({
+                    code: error.response.data.statusCode,
+                    message: error.response.data.message,
+                  }),
+                );
+              });
+            if (auth0Response) {
+              const jwtToken = auth0Response.data.access_token;
+              const user = await axios
+                .get(`${config.API_URL}/users/me`, {
+                  headers: { Authorization: `Bearer ${jwtToken}` },
+                })
+                .catch(error => {
+                  dispatch(
+                    setSessionError({
+                      code: error.response.data.statusCode,
+                      message: error.response.data.message,
+                    }),
+                  );
+                });
+              if (user) {
+                const userData = user.data;
+                userData.accessToken = jwtToken;
+                dispatch(sessionFetched({ session: userData }));
+                storeUser(userData);
+                navigation.navigate('SearchForm');
+              }
+            }
+          } catch (error) {
+            dispatch(setSessionError({ error: { message: error } }));
+          }
+        })
+        .catch(error => {
+          dispatch(
+            setSessionError({
+              code: error.response.data.statusCode,
+              message: error.response.data.description,
+            }),
+          );
+        });
+    } catch (error) {
+      dispatch(setSessionError({ code: 401, message: error.message }));
     }
   };
 };
@@ -81,23 +150,22 @@ export const fetchUser = () => async dispatch => {
     const localSession = await AsyncStorage.getItem('user');
     if (localSession) {
       const jsonUser = JSON.parse(localSession);
-      const currentUser = await axios.get(
-        `${serverBaseURL}/users/me`,
-        { headers: { 'Authorization': `Bearer ${jsonUser.accessToken}`}}
-      )
+      const currentUser = await axios.get(`${serverBaseURL}/users/me`, {
+        headers: { Authorization: `Bearer ${jsonUser.accessToken}` },
+      });
       /*.catch( error => {
         console.log(error);
         // if token is expired :
         // await AsyncStorage.removeItem(`user`);
       });*/
-      dispatch(sessionFetched({session: currentUser.data}));
+      dispatch(sessionFetched({ session: currentUser.data }));
     }
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 };
 
-const storeUser = async (user) => {
+const storeUser = async user => {
   try {
     await AsyncStorage.setItem('user', JSON.stringify(user));
   } catch (error) {

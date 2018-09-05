@@ -57,3 +57,5 @@ buck-out/
 
 # Editors
 .vscode
+
+.env

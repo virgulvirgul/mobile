@@ -2,8 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import { H1, VoiceRecorder } from '../components';
+import { H1, VoiceRecorder } from '../../../components';
+import { config } from '../../../libs/config';
+import * as searchResultsActions from './../actions';
 
 const LaunchContainer = styled.View`
   width: 100%;
@@ -25,13 +29,15 @@ const ButtonContainer = styled.View`
   padding-top: 100px;
 `;
 
-export default class Launch extends React.PureComponent {
+class VoiceSearchContainer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { };
+  }
+
   navigateToSearchResults = () => {
     this.props.navigation.navigate('SearchResults');
-  };
-
-  navigateToAuth = () => {
-    this.props.navigation.navigate('Auth');
   };
 
   render() {
@@ -40,12 +46,23 @@ export default class Launch extends React.PureComponent {
         <VoiceContainer>
           <H1 center>Ask For Your Perfect Trip</H1>
           <VoiceRecorder onPress={this.navigateToSearchResults} />
-
-          {/*<ButtonContainer>
-            <Button onPress={this.navigateToAuth} title="Login" color="#4fb797" />
-          </ButtonContainer>*/}
         </VoiceContainer>
       </LaunchContainer>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    results: state.SearchResultsReducer.results,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(searchResultsActions, dispatch);
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(VoiceSearchContainer);

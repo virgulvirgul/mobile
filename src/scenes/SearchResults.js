@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Dimensions, Text } from 'react-native';
+import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { Fetch } from 'react-data-fetching';
 import TripCard from '../components/TripCard';
@@ -24,15 +24,24 @@ const CardsContainer = styled.View`
 
 const { width: deviceWidth } = Dimensions.get('window');
 
-export default class Onboarding extends React.PureComponent {
-  renderItem = item => {
-    return <TripCard data={item} />;
-  };
+export default class SearchResults extends React.PureComponent {
+  renderItem = item => <TripCard data={item} />;
 
   render() {
+    const { getParam } = this.props.navigation;
+    const tags = getParam('tags');
+    const lat = getParam('lat');
+    const lng = getParam('lng');
+
+    const params = {
+      ...(tags ? { tags } : tags),
+      ...(lat ? { lat } : lat),
+      ...(lng ? { lng } : lng),
+    };
+
     return (
       <SearchResultsContainer>
-        <Fetch path="/search">
+        <Fetch path="/search" params={params}>
           {({ data }) => (
             <CardsContainer>
               <Carousel

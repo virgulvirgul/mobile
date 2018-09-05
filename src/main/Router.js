@@ -1,10 +1,9 @@
-import React from 'react';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import LoginContainer from '../scenes/sessions/containers/LoginContainer';
 import RegistrationContainer from '../scenes/sessions/containers/RegistrationContainer';
 import SearchResultsContainer from '../scenes/searchResults/containers/SearchResultsContainer';
-import SearchFormContainer from '../scenes/searchResults/containers/SearchFormContainer';
+import SearchFormContainer from '../scenes/search/containers/SearchFormContainer';
 import VoiceSearchContainer from '../scenes/searchResults/containers/VoiceSearchContainer';
 import MyTripsContainer from '../scenes/account/containers/MyTripsContainer';
 

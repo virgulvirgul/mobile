@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
 import styled from 'styled-components';
 
 const LoadingContainer = styled.View`
   flex: 1;
   justify-content: center;
+  background-color: white;
   align-items: center;
 `;
 

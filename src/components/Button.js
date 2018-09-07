@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, TouchableHighlight } from 'react-native';
 import styled from 'styled-components';
 
 const View = styled.View`
@@ -9,35 +11,63 @@ const Text = styled.Text`
   font-size: 18px;
 `;
 
-const TouchableHighlight = styled.TouchableHighlight`
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-`;
-
-const buttonColors = {
-  primary: TouchableHighlight.extend`
-    background-color: #4fb797;
-  `,
-  dark: TouchableHighlight.extend`
-    background-color: black;
-  `,
-  light: TouchableHighlight.extend`
-    background-color: white;
-  `,
-};
+const buttonStyles = StyleSheet.create({
+  main: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    borderRadius: 100,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  primary: {
+    backgroundColor: '#4fb797',
+    color: 'white',
+  },
+  dark: {
+    backgroundColor: 'black',
+    color: 'white',
+  },
+  light: {
+    backgroundColor: 'white',
+    color: 'black',
+  },
+  big: {
+    padding: 10,
+  },
+  small: {
+    padding: 5,
+  },
+});
 
 export default class Button extends React.PureComponent {
   render() {
-    const { children, color, text = '', textStyle, ...rest } = this.props;
-    const content = children || <Text style={textStyle}>{text}</Text>;
-    const SelectedButton = buttonColors[color] || TouchableHighlight;
+    const { children, color, textStyle, size, ...rest } = this.props;
+
+    const content = children;
+    const sizeStyle = buttonStyles[size];
+    const colorStyle = buttonStyles[color];
 
     // may need a switch case here because of different underlayColors
     return (
-      <SelectedButton {...rest}>
-        <View>{content}</View>
-      </SelectedButton>
+      <TouchableHighlight
+        {...rest}
+      >
+        <Text style={[buttonStyles.main, sizeStyle, colorStyle]}>
+          {content}
+        </Text>
+      </TouchableHighlight>
     );
   }
 }
+
+Button.propTypes = {
+  color: PropTypes.oneOf(['primary', 'dark', 'light']),
+  size: PropTypes.oneOf(['big', 'small']),
+};
+
+Button.defaultProps = {
+  color: 'primary',
+  size: 'big',
+};

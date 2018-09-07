@@ -5,7 +5,7 @@ import { TouchableNativeFeedback, StyleSheet, Keyboard } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import CitiesAutocomplete from './CitiesAutocomplete';
-import { getLang } from '../../libs/utils';
+import { getLang, capitalizeFirstChar } from '../../libs/utils';
 
 const Field = React.Fragment;
 
@@ -54,8 +54,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-
-const capitalizeFirstChar = string => string.charAt(0).toUpperCase() + string.slice(1);
 
 export default class SearchForm extends React.Component {
   constructor(props) {

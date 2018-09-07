@@ -1,8 +1,8 @@
-{
+module.exports = {
   // Use the AirBnB JS styleguide - https://github.com/airbnb/javascript
-  "extends": "airbnb",
+  extends: 'airbnb',
   // We use 'babel-eslint' mainly for React Native Classes
-  "parser": "babel-eslint",
+  parser: 'babel-eslint',
   // We can add/overwrite custom rules here
   rules: {
     // React Native has JSX in JS files
@@ -10,5 +10,7 @@
     // React Native includes images via require('../images/example.png')
     'global-require': 'off',
     'object-curly-newline': 'off',
+    'object-curly-newline': 'off',
+    'react/destructuring-assignment': 'off',
   },
 }

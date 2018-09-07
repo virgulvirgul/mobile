@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { config } from '../../libs/config';
+import config from '../../libs/config';
 import { getLang } from '../../libs/utils';
 
 const CitiesAutoComplete = ({ inputStyle, onSelect }) => (

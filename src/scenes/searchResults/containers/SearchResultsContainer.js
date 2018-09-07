@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import { Fetch } from 'react-data-fetching';
+import { connect } from 'react-redux';
+import withLoader from '../../../hocs/withLoader';
 import TripCard from '../../../components/TripCard';
+import { H2 } from '../../../components';
 
 const SearchResultsWrapper = styled.View`
   width: 100%;
@@ -24,37 +26,37 @@ const CardsWrapper = styled.View`
 
 const { width: deviceWidth } = Dimensions.get('window');
 
-export default class SearchResultsContainer extends React.PureComponent {
+class SearchResultsContainer extends React.PureComponent {
   renderItem = item => <TripCard data={item} />;
 
   render() {
-    const { getParam } = this.props.navigation;
-    const tags = getParam('tags');
-    const lat = getParam('lat');
-    const lng = getParam('lng');
+    const { data } = this.props;
 
-    const params = {
-      ...(tags ? { tags } : tags),
-      ...(lat ? { lat } : lat),
-      ...(lng ? { lng } : lng),
-    };
+    if (data.trips.length === 0) {
+      return <CardsWrapper><H2>No results found</H2></CardsWrapper>;
+    }
 
     return (
       <SearchResultsWrapper>
-        <Fetch path="/search" params={params}>
-          {({ data }) => (
-            <CardsWrapper>
-              <Carousel
-                data={data.trips}
-                renderItem={this.renderItem}
-                sliderWidth={deviceWidth}
-                itemWidth={deviceWidth - 50}
-                inactiveSlideScale={1}
-              />
-            </CardsWrapper>
-          )}
-        </Fetch>
+        <CardsWrapper>
+          <Carousel
+            data={data.trips}
+            renderItem={this.renderItem}
+            sliderWidth={deviceWidth}
+            itemWidth={deviceWidth - 50}
+            inactiveSlideScale={1}
+          />
+        </CardsWrapper>
       </SearchResultsWrapper>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isLoading: state.search.isLoading,
+  data: state.search.data,
+});
+
+export default connect(
+  mapStateToProps,
+)(withLoader(SearchResultsContainer));
